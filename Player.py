@@ -4,6 +4,7 @@ class Player:
         self.playerSymbol = playerSymbol
         self.playerMoves = []
         self.playerWin = False
+        self.playerScore = 0
 
     def setPlayerMove(self, move):
         if move not in self.playerMoves:
@@ -17,7 +18,7 @@ class Player:
     def getPlayerNum(self):
         return self.playerNum
 
-    def getPlayerMoves(self, player):
+    def getPlayerMoves(self):
         return self.playerMoves
 
     def setPlayerSymbol(self, playerSymbol):
@@ -26,14 +27,21 @@ class Player:
     def getPlayerSymbol(self):
         return self.playerSymbol
 
-    def resetPlayerWin(self):
-        self.playerWin = False
-
     def getPlayerWin(self):
         return self.playerWin
 
+    def incrementScore(self):
+        self.playerScore += 1
+
+    def getPlayerScore(self):
+        return self.playerScore
+
+    def playerReset(self):
+        self.playerMoves = []
+        self.playerWin = False
+
     def checkPlayerWin(self):
-        winPositions = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+        winPositions = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
         for pos in winPositions:
             if all(y in self.playerMoves for y in pos):
